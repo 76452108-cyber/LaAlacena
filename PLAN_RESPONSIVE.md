@@ -89,8 +89,8 @@ Basado en la auditoría, las siguientes vistas necesitan ajustes para ser fully 
 
 ### 4. Vistas de registro y auth
 - Se mejoró `auth/register.blade.php` con un encabezado claro y texto de soporte, manteniendo el formulario responsive dentro del layout guest.
-- Se mejoraron `auth/forgot-password.blade.php` y `auth/reset-password.blade.php` con encabezados descriptivos y un layout más claro en móviles.
-- **Utilidad**: Se agrega una experiencia más cuidada en el flujo de auth, mostrando que el proyecto ya está preparado para la parte de registro y recuperación de contraseña.
+- Se mejoraron `auth/forgot-password.blade.php`, `auth/reset-password.blade.php`, `auth/verify-email.blade.php` y `auth/confirm-password.blade.php` con encabezados descriptivos y un layout más claro en móviles.
+- **Utilidad**: Se agrega una experiencia más cuidada en el flujo de auth, mostrando que el proyecto ya está preparado para la parte de registro, verificación y recuperación de contraseña.
 
 ### 5. Dashboard y perfil
 - Se ajustó `dashboard.blade.php` para usar un panel responsive con cards y grid adaptativo en pantallas medianas y grandes.

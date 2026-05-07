@@ -16,11 +16,34 @@
         <input type="text" placeholder="Buscar comida o restaurante..." class="search">
 
         <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Explorar</a>
-            <a href="#">Pedidos</a>
+        <a href="/">Inicio</a>
+        <a href="#">Explorar</a>
+        <a href="#">Pedidos</a>
+
+        @guest
             <a href="{{ route('login') }}">Login</a>
-        </nav>
+            <a href="{{ route('register') }}">Registrarse</a>
+        @endguest
+
+        @auth
+            <span class="usuario">
+                Hola, {{ auth()->user()->name }}
+            </span>
+       
+        @if(auth()->user()->rol === 'admin')
+        <a href="/admin" class="admin-link">
+            Panel Admin
+         </a>
+        @endif
+
+        <form action="{{ route('logout') }}" method="POST" class="logout-form">
+            @csrf
+            <button type="submit">Cerrar sesión</button>
+        </form>
+
+        @endauth
+
+</nav>
     </header>
 
     <!-- HERO -->

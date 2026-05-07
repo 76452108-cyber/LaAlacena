@@ -24,19 +24,6 @@
             </p>
         </div>
 
-        <!-- ERRORES -->
-        @if ($errors->any())
-
-            <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
-
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-
-            </div>
-
-        @endif
-
         <form method="POST" action="{{ route('register') }}" class="space-y-4">
 
             @csrf

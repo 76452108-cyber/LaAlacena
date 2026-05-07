@@ -226,9 +226,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                    <img src="https://via.placeholder.com/300x200" class="w-full h-48 object-cover">
+                    <img src="https://www.lacanastabagueteria.pe/sites/default/files/la_canasta_logo.png" class="w-full h-48 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Panadería Don José</h3>
+                        <h3 class="text-xl font-semibold mb-2">La canasta</h3>
                         <p class="text-gray-600 mb-4">Bolsa sorpresa de panes</p>
 
                         <div class="flex justify-between items-center mb-4">
@@ -241,7 +241,7 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                    <img src="https://via.placeholder.com/300x200" class="w-full h-48 object-cover">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYVyNGEvuureH-VYvK87YVVbRFrp1ra1HFCQ&s" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold mb-2">Restaurante Criollo</h3>
                         <p class="text-gray-600 mb-4">Menú del día</p>

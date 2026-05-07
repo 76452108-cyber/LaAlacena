@@ -10,14 +10,14 @@
 <body class="font-sans antialiased bg-gray-100">
 
     <!-- NAVBAR -->
-    <header class="bg-white shadow border-b border-gray-100">
+    <header x-data="{ open: false }" class="bg-white shadow border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <div class="text-xl font-bold text-green-700">La Alacena</div>
                 </div>
 
-                <div class="flex-1 max-w-md mx-4">
+                <div class="hidden md:flex-1 md:mx-4 md:block">
                     <input type="text" placeholder="Buscar comida o restaurante..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                 </div>
 
@@ -28,14 +28,25 @@
                     <a href="{{ route('login') }}" class="text-gray-700 hover:text-green-700">Login</a>
                 </nav>
 
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button class="text-gray-700 hover:text-green-700 focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center md:hidden">
+                    <button @click="open = !open" class="text-gray-700 hover:text-green-700 focus:outline-none">
+                        <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg x-show="open" x-cloak class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
                     </button>
                 </div>
+            </div>
+        </div>
+
+        <div x-show="open" x-cloak class="md:hidden border-t border-gray-200 bg-white">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#" class="block text-gray-700 hover:text-green-700">Inicio</a>
+                <a href="#" class="block text-gray-700 hover:text-green-700">Explorar</a>
+                <a href="#" class="block text-gray-700 hover:text-green-700">Pedidos</a>
+                <a href="{{ route('login') }}" class="block text-gray-700 hover:text-green-700">Login</a>
             </div>
         </div>
     </header>

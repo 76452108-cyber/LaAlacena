@@ -74,12 +74,20 @@ Basado en la auditoría, las siguientes vistas necesitan ajustes para ser fully 
   - Agregar mensajes de error estilizados, campos anchos (`w-full`) y botones con aspecto consistente.
 - **Utilidad**: El login ahora es usable en móviles sin zoom, consistente con el resto del proyecto y listo para integrar la lógica de Diego cuando se implemente el backend.
 
-### 2. Otras vistas personalizadas (si existen)
+### 2. Página de bienvenida responsiva
+- **Estado actual**: `welcome.blade.php` ahora usa Tailwind y Vite para styles, y se ha agregado un menú móvil funcional con Alpine.js para adaptarse a pantallas pequeñas.
+- **Cambios aplicados**:
+  - Cabecera responsive con búsqueda adaptativa y menú mobile-first.
+  - Menú móvil desplegable con botón hamburguesa.
+  - Estructura de layout responsive para hero, categorías y cards.
+- **Utilidad**: La página de bienvenida se comporta correctamente en móviles, tablets y desktop, ofreciendo una experiencia clara y usable.
+
+### 3. Otras vistas personalizadas (si existen)
 - Si hay vistas en `profile/` o `components/` que usen CSS personalizado, aplicar lo mismo: convertir a Tailwind.
 - **Ejemplo**: Si `profile/edit.blade.php` tiene elementos no responsive, ajustar grids o flexbox.
 - **Explicación**: Asegurar que todas las páginas (dashboard, perfiles) sean consistentes.
 
-### 3. Optimizaciones globales
+### 4. Optimizaciones globales
 - Revisar `resources/css/app.css` para purgar estilos no usados de Tailwind.
 - Agregar Alpine.js para menú móvil si se implementa.
 - **Explicación**: Mejora performance y consistencia.

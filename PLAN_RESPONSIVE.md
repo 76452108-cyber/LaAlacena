@@ -82,7 +82,16 @@ Basado en la auditoría, las siguientes vistas necesitan ajustes para ser fully 
   - Estructura de layout responsive para hero, categorías y cards.
 - **Utilidad**: La página de bienvenida se comporta correctamente en móviles, tablets y desktop, ofreciendo una experiencia clara y usable.
 
-### 3. Otras vistas personalizadas (si existen)
+### 3. Layouts globales ajustados
+- Se actualizó `layouts/guest.blade.php` para usar un contenedor responsive centrado, con mayor padding y un card adaptativo `max-w-md` que mejora la experiencia en móviles.
+- Se actualizó `layouts/app.blade.php` para envolver el contenido principal en un contenedor `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10`, garantizando márgenes y espaciado responsive en todas las páginas autenticadas.
+- **Utilidad**: Estos cambios evitan que las páginas internas se vean apretadas en pantallas grandes y aseguran consistencia en el render de todo el sitio.
+
+### 4. Vistas de registro y auth
+- Se mejoró `auth/register.blade.php` con un encabezado claro y texto de soporte, manteniendo el formulario responsive dentro del layout guest.
+- **Utilidad**: Se agrega una experiencia más cuidada en el flujo de registro, mostrando que el proyecto ya está preparado para la parte de auth.
+
+### 5. Otras vistas personalizadas (si existen)
 - Si hay vistas en `profile/` o `components/` que usen CSS personalizado, aplicar lo mismo: convertir a Tailwind.
 - **Ejemplo**: Si `profile/edit.blade.php` tiene elementos no responsive, ajustar grids o flexbox.
 - **Explicación**: Asegurar que todas las páginas (dashboard, perfiles) sean consistentes.

@@ -1,4 +1,9 @@
 <x-guest-layout>
+    <div class="mb-6 text-center">
+        <h2 class="text-2xl font-semibold text-gray-900">Crear cuenta</h2>
+        <p class="mt-2 text-sm text-gray-600">Completa tus datos para registrarte en La Alacena y acceder a ofertas sociales en Arequipa.</p>
+    </div>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

@@ -5,77 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Alacena</title>
 
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="font-sans antialiased bg-gray-100">
 
     <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="logo">La Alacena</div>
+    <header class="bg-white shadow border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="text-xl font-bold text-green-700">La Alacena</div>
+                </div>
 
-        <input type="text" placeholder="Buscar comida o restaurante..." class="search">
+                <div class="flex-1 max-w-md mx-4">
+                    <input type="text" placeholder="Buscar comida o restaurante..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
 
-        <nav>
-            <a href="#">Inicio</a>
-            <a href="#">Explorar</a>
-            <a href="#">Pedidos</a>
-            <a href="{{ route('login') }}">Login</a>
-        </nav>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-green-700">Inicio</a>
+                    <a href="#" class="text-gray-700 hover:text-green-700">Explorar</a>
+                    <a href="#" class="text-gray-700 hover:text-green-700">Pedidos</a>
+                    <a href="{{ route('login') }}" class="text-gray-700 hover:text-green-700">Login</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-gray-700 hover:text-green-700 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- HERO -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Comida buena, a mejor precio</h1>
-            <p>Evita el desperdicio y ahorra dinero en Arequipa</p>
-            <button>Explorar ofertas</button>
+    <section class="bg-gradient-to-r from-green-700 to-green-500 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Comida buena, a mejor precio</h1>
+            <p class="text-xl md:text-2xl mb-8">Evita el desperdicio y ahorra dinero en Arequipa</p>
+            <button class="bg-white text-green-700 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Explorar ofertas</button>
         </div>
     </section>
 
     <!-- CATEGORÍAS -->
-    <section class="categorias">
-        <button>🍞 Panaderías</button>
-        <button>🍛 Restaurantes</button>
-        <button>🥦 Supermercados</button>
-        <button>🍰 Postres</button>
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍞 Panaderías</button>
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍛 Restaurantes</button>
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🥦 Supermercados</button>
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍰 Postres</button>
+            </div>
+        </div>
     </section>
 
     <!-- PRODUCTOS -->
-    <section class="productos">
-        <h2>Ofertas disponibles</h2>
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-8">Ofertas disponibles</h2>
 
-        <div class="grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200">
-                <div class="card-body">
-                    <h3>Panadería Don José</h3>
-                    <p>Bolsa sorpresa de panes</p>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/300x200" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Panadería Don José</h3>
+                        <p class="text-gray-600 mb-4">Bolsa sorpresa de panes</p>
 
-                    <div class="info">
-                        <span class="precio">S/ 5.00</span>
-                        <span class="stock">Stock: 5</span>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-700 font-bold text-lg">S/ 5.00</span>
+                            <span class="text-gray-500 text-sm">Stock: 5</span>
+                        </div>
+
+                        <button class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">Agregar</button>
                     </div>
-
-                    <button>Agregar</button>
                 </div>
-            </div>
 
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200">
-                <div class="card-body">
-                    <h3>Restaurante Criollo</h3>
-                    <p>Menú del día</p>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                    <img src="https://via.placeholder.com/300x200" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Restaurante Criollo</h3>
+                        <p class="text-gray-600 mb-4">Menú del día</p>
 
-                    <div class="info">
-                        <span class="precio">S/ 10.00</span>
-                        <span class="stock">Stock: 3</span>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-green-700 font-bold text-lg">S/ 10.00</span>
+                            <span class="text-gray-500 text-sm">Stock: 3</span>
+                        </div>
+
+                        <button class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">Agregar</button>
                     </div>
-
-                    <button>Agregar</button>
                 </div>
-            </div>
 
+            </div>
         </div>
     </section>
 

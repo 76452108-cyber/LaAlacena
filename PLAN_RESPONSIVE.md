@@ -89,14 +89,20 @@ Basado en la auditoría, las siguientes vistas necesitan ajustes para ser fully 
 
 ### 4. Vistas de registro y auth
 - Se mejoró `auth/register.blade.php` con un encabezado claro y texto de soporte, manteniendo el formulario responsive dentro del layout guest.
-- **Utilidad**: Se agrega una experiencia más cuidada en el flujo de registro, mostrando que el proyecto ya está preparado para la parte de auth.
+- Se mejoraron `auth/forgot-password.blade.php` y `auth/reset-password.blade.php` con encabezados descriptivos y un layout más claro en móviles.
+- **Utilidad**: Se agrega una experiencia más cuidada en el flujo de auth, mostrando que el proyecto ya está preparado para la parte de registro y recuperación de contraseña.
 
-### 5. Otras vistas personalizadas (si existen)
+### 5. Dashboard y perfil
+- Se ajustó `dashboard.blade.php` para usar un panel responsive con cards y grid adaptativo en pantallas medianas y grandes.
+- Se actualizó `profile/edit.blade.php` para mostrar dos paneles lado a lado en desktop y un diseño fluido en móviles.
+- **Utilidad**: Estos cambios hacen visibles mejoras reales en las vistas internas del proyecto, no solo en la página de bienvenida.
+
+### 6. Otras vistas personalizadas (si existen)
 - Si hay vistas en `profile/` o `components/` que usen CSS personalizado, aplicar lo mismo: convertir a Tailwind.
 - **Ejemplo**: Si `profile/edit.blade.php` tiene elementos no responsive, ajustar grids o flexbox.
 - **Explicación**: Asegurar que todas las páginas (dashboard, perfiles) sean consistentes.
 
-### 4. Optimizaciones globales
+### 7. Optimizaciones globales
 - Revisar `resources/css/app.css` para purgar estilos no usados de Tailwind.
 - Agregar Alpine.js para menú móvil si se implementa.
 - **Explicación**: Mejora performance y consistencia.

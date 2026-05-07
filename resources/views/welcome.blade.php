@@ -40,6 +40,9 @@
                 </div>
             </div>
         </div>
+        <div class="md:hidden px-4 pb-4 bg-white">
+            <input type="text" placeholder="Buscar comida o restaurante..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+        </div>
 
         <div x-show="open" x-cloak class="md:hidden border-t border-gray-200 bg-white">
             <div class="px-4 py-4 space-y-3">

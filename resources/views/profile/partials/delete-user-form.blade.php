@@ -34,19 +34,19 @@
                     id="password"
                     name="password"
                     type="password"
-                    class="mt-1 block w-3/4"
+                    class="mt-1 block w-full"
                     placeholder="{{ __('Password') }}"
                 />
 
                 <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" />
             </div>
 
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+                <x-secondary-button x-on:click="$dispatch('close')" class="w-full sm:w-auto">
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ms-3">
+                <x-danger-button class="w-full sm:w-auto">
                     {{ __('Delete Account') }}
                 </x-danger-button>
             </div>

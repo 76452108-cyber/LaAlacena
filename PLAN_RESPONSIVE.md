@@ -78,6 +78,7 @@ Basado en la auditoría, las siguientes vistas necesitan ajustes para ser fully 
 - **Estado actual**: `welcome.blade.php` ahora usa Tailwind y Vite para styles, y se ha agregado un menú móvil funcional con Alpine.js para adaptarse a pantallas pequeñas.
 - **Cambios aplicados**:
   - Cabecera responsive con búsqueda adaptativa y menú mobile-first.
+  - Búsqueda visible en móviles con input debajo del header.
   - Menú móvil desplegable con botón hamburguesa.
   - Estructura de layout responsive para hero, categorías y cards.
 - **Utilidad**: La página de bienvenida se comporta correctamente en móviles, tablets y desktop, ofreciendo una experiencia clara y usable.
@@ -90,6 +91,7 @@ Basado en la auditoría, las siguientes vistas necesitan ajustes para ser fully 
 ### 4. Vistas de registro y auth
 - Se mejoró `auth/register.blade.php` con un encabezado claro y texto de soporte, manteniendo el formulario responsive dentro del layout guest.
 - Se mejoraron `auth/forgot-password.blade.php`, `auth/reset-password.blade.php`, `auth/verify-email.blade.php` y `auth/confirm-password.blade.php` con encabezados descriptivos y un layout más claro en móviles.
+- Se implementó `x-primary-button` full width en los botones principales de los formularios auth para mejor usabilidad en móviles.
 - **Utilidad**: Se agrega una experiencia más cuidada en el flujo de auth, mostrando que el proyecto ya está preparado para la parte de registro, verificación y recuperación de contraseña.
 
 ### 5. Dashboard y perfil

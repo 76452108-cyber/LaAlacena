@@ -1,11 +1,16 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/restaurante', function () {
+    return view('restaurante.restaurante');
 });
 
 Route::get('/admin', function () {
@@ -30,6 +35,10 @@ Route::get('/usuarios', function () {
 
 })->middleware('auth');
 
+//crud productos
+
+Route::resource('productos', ProductoController::class);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -37,3 +46,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+

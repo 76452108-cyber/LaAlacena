@@ -64,6 +64,15 @@
 
         @endif
 
+        @if(auth()->user()->rol === 'restaurante')
+
+            <a href="/restaurante"
+               class="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
+                Añadir producto
+            </a>
+
+        @endif
+
         <form action="{{ route('logout') }}" method="POST">
             @csrf
 

@@ -29,7 +29,7 @@
     </header>
 
     <!-- CABECERA DE LA PÁGINA -->
-    <section class="bg-gradient-to-r from-green-700 to-green-505 text-white py-12">
+    <section class="bg-gradient-to-r from-green-700 to-green-500 text-white py-12">
         <div class="max-w-4xl mx-auto text-center px-4">
             <h1 class="text-4xl font-bold">Panel del Restaurante</h1>
             <p class="mt-3 text-lg opacity-90">Crea ofertas atractivas y ayuda a reducir el desperdicio de comida en Arequipa.</p>
@@ -44,7 +44,7 @@
                 Agregar Producto
             </h2>
 
-            <form id="productForm" method="POST" action="{{ route('productos.store') }}">
+            <form id="productForm" method="POST" action="{{ route('productos.store') }}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Campo: Nombre del producto -->
@@ -92,6 +92,21 @@
                             class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none"
                             required>
                         <span class="error-msg text-red-650 text-xs mt-1 hidden" id="error-precio"></span>
+                    </div>
+
+                    <!-- Campo: Imagen -->
+                    <div class="mb-6">
+                        <label for="imagen" class="block mb-1 font-semibold text-gray-700 text-sm">
+                             Imagen del producto
+                        </label>
+                        <input
+                          type="file"
+                          name="imagen"
+                          id="imagen"
+                          accept="image/*"
+                          class="w-full border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none">
+
+                         <span class="text-gray-500 text-xs">Formatos permitidos: JPG, PNG, JPE.</span>
                     </div>
 
                     <div>

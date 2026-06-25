@@ -228,47 +228,51 @@
     </section>
 
     <!-- PRODUCTOS -->
-    <section class="py-12 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center mb-8">Ofertas disponibles</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                    <img src="https://www.lacanastabagueteria.pe/sites/default/files/la_canasta_logo.png" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">La canasta</h3>
-                        <p class="text-gray-600 mb-4">Bolsa sorpresa de panes</p>
-
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-green-700 font-bold text-lg">S/ 5.00</span>
-                            <span class="text-gray-500 text-sm">Stock: 5</span>
-                        </div>
-
-                        <button class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">Agregar</button>
+<section class="py-12 bg-gray-50"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold text-center mb-8">
+        Ofertas disponibles
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @forelse($productos as $producto)
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                @if($producto->imagen)
+                 <img src="{{ asset('storage/' . $producto->imagen) }}" class="w-full h-48 object-cover">
+                @else
+                    <img src="https://via.placeholder.com/400x250?text=Producto"
+                         class="w-full h-48 object-cover">
+                @endif
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">
+                        {{ $producto->nombre }}
+                    </h3>
+                    <p class="text-gray-600 mb-4">
+                        {{ $producto->descripcion }}
+                    </p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-green-700 font-bold text-lg">
+                            S/ {{ number_format($producto->precio, 2) }}
+                        </span>
+                        <span class="text-gray-500 text-sm">
+                            Stock: {{ $producto->stock }}
+                        </span>
                     </div>
+
+                    <button class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">
+                        Ver producto
+                    </button>
                 </div>
-
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYVyNGEvuureH-VYvK87YVVbRFrp1ra1HFCQ&s" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2">Restaurante Criollo</h3>
-                        <p class="text-gray-600 mb-4">Menú del día</p>
-
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="text-green-700 font-bold text-lg">S/ 10.00</span>
-                            <span class="text-gray-500 text-sm">Stock: 3</span>
-                        </div>
-
-                        <button class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">Agregar</button>
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </section>
-
+        @empty
+            <div class="col-span-3 text-center">
+                <p class="text-gray-500 text-lg">
+                    No hay productos registrados.
+                </p>
+            </div>
+        @endforelse
+    </div>
+</div>
+</section>
     @include('layouts.footer')
-
 </body>
 </html>

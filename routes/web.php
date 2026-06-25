@@ -7,7 +7,8 @@ use App\Models\User;
 use App\Models\Producto;
 
 Route::get('/', function () {
-    return view('welcome');
+$productos = Producto::all();
+return view('welcome', compact('productos'));
 });
 
 // PANEL RESTAURANTE

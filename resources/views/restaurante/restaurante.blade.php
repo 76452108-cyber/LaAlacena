@@ -54,82 +54,188 @@
         </div>
     </section>
 
-    <!-- FORMULARIO -->
-    <section class="py-10">
-        <div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-8">
+    <!-- BOTÓN AGREGAR PRODUCTO -->
+<section class="py-8">
+    <div class="max-w-4xl mx-auto text-center">
 
-            <h2 class="text-2xl font-bold text-green-700 mb-6">
-                Agregar Producto
-            </h2>
+        <button
+            onclick="document.getElementById('formProducto').classList.toggle('hidden')"
+            class="bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800 transition">
 
-            <form method="POST" action="{{ route('productos.store') }}">
-                @csrf
+            + Agregar Producto
 
-                <div class="mb-4">
+        </button>
+
+    </div>
+</section>
+
+<!-- FORMULARIO OCULTO -->
+<section id="formProducto" class="py-4 hidden">
+
+    <div class="max-w-3xl mx-auto bg-white shadow rounded-lg p-8">
+
+        <h2 class="text-2xl font-bold text-green-700 mb-6">
+            Agregar Producto
+        </h2>
+
+        <form method="POST" action="{{ route('productos.store') }}">
+            @csrf
+
+            <div class="mb-4">
+                <label class="block mb-2 font-semibold">
+                    Nombre del producto
+                </label>
+
+                <input
+                    type="text"
+                    name="nombre"
+                    class="w-full border rounded px-4 py-2"
+                    required>
+            </div>
+
+            <div class="mb-4">
+                <label class="block mb-2 font-semibold">
+                    Descripción
+                </label>
+
+                <textarea
+                    name="descripcion"
+                    rows="4"
+                    class="w-full border rounded px-4 py-2"
+                    required></textarea>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+
+                <div>
                     <label class="block mb-2 font-semibold">
-                        Nombre del producto
+                        Precio
                     </label>
 
                     <input
-                        type="text"
-                        name="nombre"
+                        type="number"
+                        step="0.01"
+                        name="precio"
                         class="w-full border rounded px-4 py-2"
                         required>
                 </div>
 
-                <div class="mb-4">
+                <div>
                     <label class="block mb-2 font-semibold">
-                        Descripción
+                        Stock
                     </label>
 
-                    <textarea
-                        name="descripcion"
-                        rows="4"
+                    <input
+                        type="number"
+                        name="stock"
                         class="w-full border rounded px-4 py-2"
-                        required></textarea>
+                        required>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-4">
+            </div>
 
-                    <div>
-                        <label class="block mb-2 font-semibold">
-                            Precio
-                        </label>
+            <button
+                type="submit"
+                class="mt-6 w-full bg-green-700 text-white py-3 rounded hover:bg-green-800 transition">
 
-                        <input
-                            type="number"
-                            step="0.01"
-                            name="precio"
-                            class="w-full border rounded px-4 py-2"
-                            required>
+                Guardar Producto
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- LISTA DE PRODUCTOS -->
+<section class="pb-12">
+
+    <div class="max-w-6xl mx-auto">
+
+        <h2 class="text-3xl font-bold text-center mb-8 text-green-700">
+            Mis Productos
+        </h2>
+
+        @if($productos->count() > 0)
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                @foreach($productos as $producto)
+
+                    <div class="bg-white rounded-lg shadow-md p-6">
+
+                        <h3 class="text-xl font-bold mb-2">
+                            {{ $producto->nombre }}
+                        </h3>
+
+                        <p class="text-gray-600 mb-4">
+                            {{ $producto->descripcion }}
+                        </p>
+
+                        <div class="space-y-1 mb-4">
+
+                            <p>
+                                <strong>Precio:</strong>
+                                S/ {{ $producto->precio }}
+                            </p>
+
+                            <p>
+                                <strong>Stock:</strong>
+                                {{ $producto->stock }}
+                            </p>
+
+                        </div>
+
+                        <div class="flex gap-2">
+
+                            <a href="#"
+                               class="flex-1 text-center bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+
+                                Editar
+
+                            </a>
+
+                            <form action="{{ route('productos.destroy', $producto->id) }}"
+                                  method="POST"
+                                  class="flex-1">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button
+                                    type="submit"
+                                    class="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700">
+
+                                    Eliminar
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
                     </div>
 
-                    <div>
-                        <label class="block mb-2 font-semibold">
-                            Stock
-                        </label>
+                @endforeach
 
-                        <input
-                            type="number"
-                            name="stock"
-                            class="w-full border rounded px-4 py-2"
-                            required>
-                    </div>
+            </div>
 
-                </div>
+        @else
 
-                <button
-                    type="submit"
-                    class="mt-6 w-full bg-green-700 text-white py-3 rounded hover:bg-green-800 transition">
+            <div class="bg-white shadow rounded-lg p-8 text-center">
 
-                    Guardar Producto
+                <p class="text-gray-500">
+                    Aún no has registrado productos.
+                </p>
 
-                </button>
+            </div>
 
-            </form>
+        @endif
 
-        </div>
-    </section>
+    </div>
+
+</section>
 
 </body>
 </html>

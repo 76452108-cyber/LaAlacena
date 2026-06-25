@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pedidos', function (Blueprint $table) {
-            $table->id();
+            $table->id(); // PK
+            $table->foreignId('user_id')
+                  ->constrained('users')
+                  ->onDelete('cascade');
+            $table->foreignId('producto_id')
+                  ->constrained('productos')
+                  ->onDelete('cascade');
+            $table->integer('cantidad');
+            $table->string('estado');
             $table->timestamps();
         });
     }

@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    // Mostrar productos
+    // Mostrar productos del usuario autenticado
     public function index()
     {
-        $productos = Producto::all();
+        $productos = Producto::where('user_id', auth()->id())->get();
 
         return view('restaurante.indexproductos', compact('productos'));
     }
@@ -18,7 +18,9 @@ class ProductoController extends Controller
     // Mostrar formulario
     public function create()
     {
-        return view('restaurante.restaurante');
+        $productos = Producto::where('user_id', auth()->id())->get();
+
+        return view('restaurante.restaurante', compact('productos'));
     }
 
     // Guardar producto
@@ -29,14 +31,24 @@ class ProductoController extends Controller
             'descripcion' => $request->descripcion,
             'precio' => $request->precio,
             'stock' => $request->stock,
+            'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('productos.index');
+        return redirect('/restaurante');
     }
-    //eliminar producto
-    public function destroy($id){
-    $producto = Producto::findOrFail($id);
-    $producto->delete();
-    return redirect()->route('productos.index');
+
+    // Eliminar producto
+    public function destroy($id)
+    {
+        $producto = Producto::findOrFail($id);
+
+        // Seguridad: solo puede eliminar sus propios productos
+        if ($producto->user_id != auth()->id()) {
+            abort(403);
+        }
+
+        $producto->delete();
+
+        return redirect('/restaurante');
     }
-}   
+}

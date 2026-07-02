@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Cloudinary\Cloudinary;
 
 class ProductoController extends Controller
 {
@@ -21,22 +22,32 @@ class ProductoController extends Controller
         return view('restaurante.restaurante', compact('productos'));
     }
 
-    // Guardar producto
-    public function store(Request $request){
-        $rutaImagen = null;
-        if ($request->hasFile('imagen')) {
-        $rutaImagen = $request->file('imagen')->store('productos', 'public');
-        }
-        Producto::create([
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'precio' => $request->precio,
-            'stock' => $request->stock,
-            'imagen' => $rutaImagen,
-            'user_id' => auth()->id(),
-        ]);
-        return redirect('/restaurante');
+// Guardar producto
+public function store(Request $request)
+{
+    $rutaImagen = null;
+    if ($request->hasFile('imagen')) {
+        $cloudinary = new Cloudinary(env('CLOUDINARY_URL'));
+        $upload = $cloudinary
+            ->uploadApi()
+            ->upload(
+                $request->file('imagen')->getRealPath(),
+                [
+                    'folder' => 'productos'
+                ]
+            );
+        $rutaImagen = $upload['secure_url'];
     }
+    Producto::create([
+        'nombre' => $request->nombre,
+        'descripcion' => $request->descripcion,
+        'precio' => $request->precio,
+        'stock' => $request->stock,
+        'imagen' => $rutaImagen,
+        'user_id' => auth()->id(),
+    ]);
+    return redirect('/restaurante');
+}
 
     // Eliminar producto
     public function destroy($id)

@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Usuarios</title>
 </head>
+
 <body>
 
-<h1>Lista de Usuarios</h1>
+    <h1>Lista de Usuarios</h1>
 
-<table border="1" cellpadding="10">
+    <table border="1" cellpadding="10">
+        <caption>Usuarios registrados en la Alacena</caption>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+        </tr>
 
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Email</th>
-        <th>Rol</th>
-    </tr>
+        @foreach ($usuarios as $usuario)
+            <tr>
+                <td>{{ $usuario->id }}</td>
+                <td>{{ $usuario->name }}</td>
+                <td>{{ $usuario->email }}</td>
+                <td>{{ $usuario->rol }}</td>
+            </tr>
+        @endforeach
 
-    @foreach($usuarios as $usuario)
-
-    <tr>
-        <td>{{ $usuario->id }}</td>
-        <td>{{ $usuario->name }}</td>
-        <td>{{ $usuario->email }}</td>
-        <td>{{ $usuario->rol }}</td>
-    </tr>
-
-    @endforeach
-
-</table>
+    </table>
 
 </body>
+
 </html>

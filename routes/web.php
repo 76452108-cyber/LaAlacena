@@ -7,8 +7,8 @@ use App\Models\User;
 use App\Models\Producto;
 
 Route::get('/', function () {
-$productos = Producto::all();
-return view('welcome', compact('productos'));
+    $productos = Producto::all();
+    return view('welcome', compact('productos'));
 });
 
 // PANEL RESTAURANTE
@@ -36,13 +36,9 @@ Route::get('/usuarios', function () {
 Route::resource('productos', ProductoController::class);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])
-        ->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])
-        ->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])
-        ->name('profile.destroy');
-
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require_once __DIR__ . '/auth.php';

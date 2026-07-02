@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="font-sans antialiased bg-gray-100">
 
     <!-- NAVBAR -->
@@ -18,192 +20,162 @@
                 </div>
 
                 <div class="hidden md:flex-1 md:mx-4 md:block">
-                    <input type="text" placeholder="Buscar comida o restaurante..." class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <input type="text" placeholder="Buscar comida o restaurante..."
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                 </div>
 
-<nav class="hidden md:flex items-center space-x-6">
+                <nav class="hidden md:flex items-center space-x-6">
 
-    <a href="/" class="text-gray-700 hover:text-green-700">
-        Inicio
-    </a>
+                    <a href="/" class="text-gray-700 hover:text-green-700">
+                        Inicio
+                    </a>
 
-    <a href="#" class="text-gray-700 hover:text-green-700">
-        Explorar
-    </a>
+                    <a href="#" class="text-gray-700 hover:text-green-700">
+                        Explorar
+                    </a>
 
-    <a href="#" class="text-gray-700 hover:text-green-700">
-        Pedidos
-    </a>
+                    <a href="#" class="text-gray-700 hover:text-green-700">
+                        Pedidos
+                    </a>
 
-    @guest
+                    @guest
 
-        <a href="{{ route('login') }}"
-           class="text-gray-700 hover:text-green-700">
-            Login
-        </a>
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-green-700">
+                            Login
+                        </a>
 
-        <a href="{{ route('register') }}"
-           class="text-gray-700 hover:text-green-700">
-            Registrarse
-        </a>
+                        <a href="{{ route('register') }}" class="text-gray-700 hover:text-green-700">
+                            Registrarse
+                        </a>
 
-    @endguest
+                    @endguest
 
-    @auth
+                    @auth
 
-        <span class="text-green-700 font-semibold">
-            Hola, {{ auth()->user()->name }}
-        </span>
+                        <span class="text-green-700 font-semibold">
+                            Hola, {{ auth()->user()->name }}
+                        </span>
 
-        @if(auth()->user()->rol === 'admin')
+                        @if (auth()->user()->rol === 'admin')
+                            <a href="/admin" class="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
+                                Panel Admin
+                            </a>
+                        @endif
 
-            <a href="/admin"
-               class="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
-                Panel Admin
-            </a>
+                        @if (auth()->user()->rol === 'restaurante')
+                            <a href="/restaurante"
+                                class="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
+                                Añadir producto
+                            </a>
+                        @endif
 
-        @endif
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
 
-        @if(auth()->user()->rol === 'restaurante')
+                            <button type="submit"
+                                class="bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 transition">
+                                Cerrar sesión
+                            </button>
 
-            <a href="/restaurante"
-               class="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
-                Añadir producto
-            </a>
+                        </form>
 
-        @endif
+                    @endauth
 
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
+                </nav>
 
-            <button type="submit"
-                class="bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 transition">
-                Cerrar sesión
-            </button>
+                <!-- BOTÓN MÓVIL -->
+                <div class="flex items-center md:hidden">
 
-        </form>
+                    <button @click="open = !open" class="text-gray-700 hover:text-green-700 focus:outline-none">
 
-    @endauth
+                        <svg x-show="!open" class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 
-</nav>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16">
+                            </path>
 
-<!-- BOTÓN MÓVIL -->
-<div class="flex items-center md:hidden">
+                        </svg>
 
-    <button @click="open = !open"
-        class="text-gray-700 hover:text-green-700 focus:outline-none">
+                        <svg x-show="open" x-cloak class="h-6 w-6" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
 
-        <svg x-show="!open"
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12">
+                            </path>
 
-            <path stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16">
-            </path>
+                        </svg>
 
-        </svg>
+                    </button>
 
-        <svg x-show="open"
-            x-cloak
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24">
+                </div>
 
-            <path stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12">
-            </path>
+            </div>
+        </div>
 
-        </svg>
+        <!-- BUSCADOR MÓVIL -->
+        <div class="md:hidden px-4 pb-4 bg-white">
 
-    </button>
+            <input type="text" placeholder="Buscar comida o restaurante..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
 
-</div>
+        </div>
 
-</div>
-</div>
+        <!-- MENÚ MÓVIL -->
+        <div x-show="open" x-cloak class="md:hidden border-t border-gray-200 bg-white">
 
-<!-- BUSCADOR MÓVIL -->
-<div class="md:hidden px-4 pb-4 bg-white">
+            <div class="px-4 py-4 space-y-3">
 
-    <input type="text"
-        placeholder="Buscar comida o restaurante..."
-        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-
-</div>
-
-<!-- MENÚ MÓVIL -->
-<div x-show="open"
-     x-cloak
-     class="md:hidden border-t border-gray-200 bg-white">
-
-    <div class="px-4 py-4 space-y-3">
-
-        <a href="/"
-           class="block text-gray-700 hover:text-green-700">
-            Inicio
-        </a>
-
-        <a href="#"
-           class="block text-gray-700 hover:text-green-700">
-            Explorar
-        </a>
-
-        <a href="#"
-           class="block text-gray-700 hover:text-green-700">
-            Pedidos
-        </a>
-
-        @guest
-
-            <a href="{{ route('login') }}"
-               class="block text-gray-700 hover:text-green-700">
-                Login
-            </a>
-
-            <a href="{{ route('register') }}"
-               class="block text-gray-700 hover:text-green-700">
-                Registrarse
-            </a>
-
-        @endguest
-
-        @auth
-
-            <span class="block text-green-700 font-semibold">
-                Hola, {{ auth()->user()->name }}
-            </span>
-
-            @if(auth()->user()->rol === 'admin')
-
-                <a href="/admin"
-                   class="block bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
-                    Panel Admin
+                <a href="/" class="block text-gray-700 hover:text-green-700">
+                    Inicio
                 </a>
 
-            @endif
+                <a href="#" class="block text-gray-700 hover:text-green-700">
+                    Explorar
+                </a>
 
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
+                <a href="#" class="block text-gray-700 hover:text-green-700">
+                    Pedidos
+                </a>
 
-                <button type="submit"
-                    class="w-full bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 transition">
-                    Cerrar sesión
-                </button>
+                @guest
 
-            </form>
+                    <a href="{{ route('login') }}" class="block text-gray-700 hover:text-green-700">
+                        Login
+                    </a>
 
-        @endauth
+                    <a href="{{ route('register') }}" class="block text-gray-700 hover:text-green-700">
+                        Registrarse
+                    </a>
 
-    </div>
+                @endguest
 
-</div>
+                @auth
+
+                    <span class="block text-green-700 font-semibold">
+                        Hola, {{ auth()->user()->name }}
+                    </span>
+
+                    @if (auth()->user()->rol === 'admin')
+                        <a href="/admin" class="block bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
+                            Panel Admin
+                        </a>
+                    @endif
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+
+                        <button type="submit"
+                            class="w-full bg-red-600 text-white px-3 py-2 rounded hover:bg-red-700 transition">
+                            Cerrar sesión
+                        </button>
+
+                    </form>
+
+                @endauth
+
+            </div>
+
+        </div>
     </header>
 
     <!-- HERO -->
@@ -211,7 +183,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">Comida buena, a mejor precio</h1>
             <p class="text-xl md:text-2xl mb-8">Evita el desperdicio y ahorra dinero en Arequipa</p>
-            <button class="bg-white text-green-700 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Explorar ofertas</button>
+            <button
+                class="bg-white text-green-700 px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition">Explorar
+                ofertas</button>
         </div>
     </section>
 
@@ -219,60 +193,67 @@
     <section class="py-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap justify-center gap-4">
-                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍞 Panaderías</button>
-                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍛 Restaurantes</button>
-                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🥦 Supermercados</button>
-                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍰 Postres</button>
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍞
+                    Panaderías</button>
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍛
+                    Restaurantes</button>
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🥦
+                    Supermercados</button>
+                <button class="bg-green-100 text-green-800 px-6 py-3 rounded-full hover:bg-green-200 transition">🍰
+                    Postres</button>
             </div>
         </div>
     </section>
 
     <!-- PRODUCTOS -->
 
-<section class="py-12 bg-gray-50"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-3xl font-bold text-center mb-8">
-        Ofertas disponibles
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        @forelse($productos as $producto)
-            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
-                @if($producto->imagen)
-                 <img src="{{ asset('storage/' . $producto->imagen) }}" class="w-full h-48 object-cover">
-                @else
-                    <img src="https://via.placeholder.com/400x250?text=Producto"
-                         class="w-full h-48 object-cover">
-                @endif
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2">
-                        {{ $producto->nombre }}
-                    </h3>
-                    <p class="text-gray-600 mb-4">
-                        {{ $producto->descripcion }}
-                    </p>
-                    <div class="flex justify-between items-center mb-4">
-                        <span class="text-green-700 font-bold text-lg">
-                            S/ {{ number_format($producto->precio, 2) }}
-                        </span>
-                        <span class="text-gray-500 text-sm">
-                            Stock: {{ $producto->stock }}
-                        </span>
-                    </div>
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-8">
+                Ofertas disponibles
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @forelse($productos as $producto)
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        @if ($producto->imagen)
+                            <img src="{{ $producto->imagen }}" class="w-full h-48 object-cover" alt="imagen no cargada">
+                        @else
+                            <img src="https://via.placeholder.com/400x250?text=Producto" alt="imagen no cargada"
+                                class="w-full h-48 object-cover">
+                        @endif
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">
+                                {{ $producto->nombre }}
+                            </h3>
+                            <p class="text-gray-600 mb-4">
+                                {{ $producto->descripcion }}
+                            </p>
+                            <div class="flex justify-between items-center mb-4">
+                                <span class="text-green-700 font-bold text-lg">
+                                    S/ {{ number_format($producto->precio, 2) }}
+                                </span>
+                                <span class="text-gray-500 text-sm">
+                                    Stock: {{ $producto->stock }}
+                                </span>
+                            </div>
 
-                    <button class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">
-                        Ver producto
-                    </button>
-                </div>
+                            <button
+                                class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">
+                                Ver producto
+                            </button>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-span-3 text-center">
+                        <p class="text-gray-500 text-lg">
+                            No hay productos registrados.
+                        </p>
+                    </div>
+                @endforelse
             </div>
-        @empty
-            <div class="col-span-3 text-center">
-                <p class="text-gray-500 text-lg">
-                    No hay productos registrados.
-                </p>
-            </div>
-        @endforelse
-    </div>
-</div>
-</section>
+        </div>
+    </section>
     @include('layouts.footer')
 </body>
+
 </html>

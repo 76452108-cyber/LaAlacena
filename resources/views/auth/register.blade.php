@@ -25,6 +25,17 @@
                 </p>
             </div>
 
+            {{-- Mostrar errores de validación --}}
+            @if ($errors->any())
+                <div class="mb-4 rounded-lg border border-red-300 bg-red-100 p-4 text-red-700">
+                    <ul class="list-disc list-inside space-y-1">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('register') }}" class="space-y-4">
 
                 @csrf

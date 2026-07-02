@@ -63,8 +63,7 @@
                         @endif
 
                         @if (auth()->user()->rol === 'restaurante')
-                            <a href="/restaurante"
-                                class="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
+                            <a href="/restaurante" class="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-500 transition">
                                 Añadir producto
                             </a>
                         @endif
@@ -230,15 +229,14 @@
                             </p>
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-green-700 font-bold text-lg">
-                                    S/ {{ number_format($producto->precio, 2) }}
+                                    S/ {{ (float) $producto->precio }}
                                 </span>
                                 <span class="text-gray-500 text-sm">
                                     Stock: {{ $producto->stock }}
                                 </span>
                             </div>
 
-                            <button
-                                class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">
+                            <button class="w-full bg-green-700 text-white py-2 rounded-md hover:bg-green-800 transition">
                                 Ver producto
                             </button>
                         </div>

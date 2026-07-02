@@ -18,36 +18,35 @@ class ProductoController extends Controller
     // Mostrar formulario
     public function create()
     {
-        $productos = Producto::where('user_id', auth()->id())->get();
-        return view('restaurante.restaurante', compact('productos'));
+        return view('restaurante.restaurante');
     }
 
-// Guardar producto
-public function store(Request $request)
-{
-    $rutaImagen = null;
-    if ($request->hasFile('imagen')) {
-        $cloudinary = new Cloudinary(env('CLOUDINARY_URL'));
-        $upload = $cloudinary
-            ->uploadApi()
-            ->upload(
-                $request->file('imagen')->getRealPath(),
-                [
-                    'folder' => 'productos'
-                ]
-            );
-        $rutaImagen = $upload['secure_url'];
+    // Guardar producto
+    public function store(Request $request)
+    {
+        $rutaImagen = null;
+        if ($request->hasFile('imagen')) {
+            $cloudinary = new Cloudinary(env('CLOUDINARY_URL'));
+            $upload = $cloudinary
+                ->uploadApi()
+                ->upload(
+                    $request->file('imagen')->getRealPath(),
+                    [
+                        'folder' => 'productos'
+                    ]
+                );
+            $rutaImagen = $upload['secure_url'];
+        }
+        Producto::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'precio' => $request->precio,
+            'stock' => $request->stock,
+            'imagen' => $rutaImagen,
+            'user_id' => auth()->id(),
+        ]);
+        return redirect('/restaurante');
     }
-    Producto::create([
-        'nombre' => $request->nombre,
-        'descripcion' => $request->descripcion,
-        'precio' => $request->precio,
-        'stock' => $request->stock,
-        'imagen' => $rutaImagen,
-        'user_id' => auth()->id(),
-    ]);
-    return redirect('/restaurante');
-}
 
     // Eliminar producto
     public function destroy($id)
